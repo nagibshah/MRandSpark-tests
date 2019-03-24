@@ -19,9 +19,9 @@ def videoCategoryReducer():
     """
  
     data = read_map_output(sys.stdin)
-    for category, countrycounts in data: 
+    for category, video_id_counts in data: 
         # split the country counts by , delimiter and then by = to get a list of counts only
-        count_list = [int(country.split("=")[1]) for country in countrycounts.split(",")] 
+        count_list = [int(video_id.split("=")[1]) for video_id in video_id_counts.split(",")] 
         total = sum(count_list)
         avg = total / len(count_list)
         # now print out the results 
