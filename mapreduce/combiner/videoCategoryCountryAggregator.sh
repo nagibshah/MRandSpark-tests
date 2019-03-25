@@ -7,6 +7,7 @@ if [ $# -ne 2 ]; then
 fi
 
 hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-3.1.1.jar \
+-D mapreduce.job.maps=3 \
 -D mapreduce.job.reduces=3 \
 -D mapreduce.job.name='Video Category Country Average list' \
 -file videoCategoryMapper.py \
