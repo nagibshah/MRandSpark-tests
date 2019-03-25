@@ -16,6 +16,8 @@ hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-3.1.1.jar \
 -file videoCategoryCombiner.py \
 -combiner videoCategoryCombiner.py \
 -file videoCategoryReducer.py \
--reducer videoCategoryReducer.py \
+-combiner videoCategoryReducer.py \
+-file videoCategoryReducer2.py \
+-reducer videoCategoryReducer2.py \
 -input $1 \
 -output $2
