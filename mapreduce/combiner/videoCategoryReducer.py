@@ -25,7 +25,7 @@ def videoCategoryReducer():
         total = sum(count_list)
         avg = total / len(count_list)
         # now print out the results 
-        print("{0}: {1}".format(category, avg))
+        print("{0}: {1}".format(category, round(avg,2)))
 
 if __name__ == "__main__":
     videoCategoryReducer()
