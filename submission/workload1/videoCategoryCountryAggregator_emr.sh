@@ -11,8 +11,9 @@ hadoop jar /usr/lib/hadoop/hadoop-streaming-2.8.5-amzn-1.jar \
 -D mapreduce.job.name='Video Category Country Average list' \
 -file videoCategoryMapper.py \
 -mapper videoCategoryMapper.py \
+-file videoCategoryCombiner.py \
+-combiner videoCategoryCombiner.py \
 -file videoCategoryReducer.py \
--combiner videoCategoryReducer.py \
 -reducer videoCategoryReducer.py \
 -input $1 \
 -output $2
