@@ -15,6 +15,7 @@ hadoop jar /usr/lib/hadoop/hadoop-streaming-2.8.5-amzn-1.jar \
 -file videoCategoryCombiner.py \
 -combiner videoCategoryCombiner.py \
 -file videoCategoryReducer.py \
+-mapper videoCategoryReducer.py \
 -combiner videoCategoryReducer.py \
 -file videoCategoryReducer2.py \
 -reducer videoCategoryReducer2.py \
