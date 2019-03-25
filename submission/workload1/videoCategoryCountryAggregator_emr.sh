@@ -9,6 +9,7 @@ fi
 hadoop jar /usr/lib/hadoop/hadoop-streaming-2.8.5-amzn-1.jar \
 -D mapreduce.job.reduces=3 \
 -D mapreduce.job.name='Video Category Country Average list' \
+-partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner \
 -file videoCategoryMapper.py \
 -mapper videoCategoryMapper.py \
 -file videoCategoryCombiner.py \

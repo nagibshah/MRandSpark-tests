@@ -8,7 +8,7 @@ def read_map_output(file):
         Output format: (key, value)
     """
     for line in file:
-        yield line.strip().split("\t", 2)
+        yield line.strip().split("\t", 1)
 
 
 def videoCategoryCombiner():
@@ -24,9 +24,9 @@ def videoCategoryCombiner():
 
     data = read_map_output(sys.stdin)
 
-    for category, video_id_counts, country in data:
-        #video_id_counts = videodata.split("|")[0]
-        #country = videodata.split("|")[1]
+    for category, videodata in data:
+        video_id_counts = videodata.split("|")[0]
+        country = videodata.split("|")[1]
 
         # print new category
         if current_category != category:

@@ -22,7 +22,7 @@ def videoCategoryMapper():
         category = line[3].strip()
         country = line[11].strip()
         video_id = line[0].strip()
-        print("{0}\t{1}=1\t{2}".format(category, video_id, country))
+        print("{0}\t{1}=1|{2}".format(category, video_id, country))
 
     #for line in reader:
     #    video_id,trending_date,category_id,category,publish_time,views,likes,dislikes,\
