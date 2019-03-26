@@ -39,9 +39,9 @@ def videoCategoryReducer():
                 videoid = list(video_id_list.get(category))
                 for count in counts: 
                         if i < len(counts)-1:
-                                output += "{}={},".format(videoid[i], count)
+                                output += "{},".format(count)
                         else: 
-                                output += "{}={}".format(videoid[i], count)
+                                output += "{}".format(count)
                         i += 1
                 print(output.strip())
                 
