@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import sys
+import sys
 
 def read_map_output(file):
         """ Return an iterator for key, value pair extracted from file (sys.stdin)
@@ -12,11 +13,12 @@ def read_map_output(file):
 
 def videoCategoryReducer():
         """ This reducer reads in video category, country:count key-value pairs and returns the
-        average count per category by sum(count)/num of country 
-        Input format: category \t {video_id=1}
-        Output format: category:average
+        sum of each video id country appearances per category. Sum is only carried out for matching
+        videoids.  
+        Input format: category \t {video_id=count}
+        Output format: category \t {count}
         """
-    
+
         category_video_counts = {}  
         video_id_list = {}
         data = read_map_output(sys.stdin)
@@ -50,8 +52,7 @@ def videoCategoryReducer():
                         else: 
                                 output += "{}".format(count)
                         i += 1
-                print(output.strip())
-                
+                print(output.strip())                
 
 if __name__ == "__main__":
     videoCategoryReducer()

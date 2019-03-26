@@ -1,7 +1,6 @@
 #!/usr/local/bin/python3 
 import sys
 
-
 def read_map_output(file):
     """ Return an iterator for key, value pair extracted from file (sys.stdin)
         Input format:  key \t value
@@ -15,7 +14,7 @@ def videoCategoryCombiner():
     """ This reducer reads in video category, country-counts key-value pairs and returns the
     total sum of country-counts per category in the same format as the input to allow
     the reducer to be used as a combiner.
-    Input format: category \t {video_id=1|country}
+    Input format: category \t {video_id=1\tcountry}
     Output format: category \t {video_id=count}
     """
     current_category = ""
@@ -25,9 +24,6 @@ def videoCategoryCombiner():
     data = read_map_output(sys.stdin)
 
     for category, video_id_counts, country in data:
-        #video_id_counts = videodata.split("|")[0]
-        #country = videodata.split("|")[1]
-
         # print new category
         if current_category != category:
             if current_category != "": printOutput(current_category, video_id_count)
@@ -51,7 +47,7 @@ def videoCategoryCombiner():
     if current_category != "":
         printOutput(current_category, video_id_count)
 
-
+# print output function 
 def printOutput(currentCategory, videoIdCounts):
     output = currentCategory + "\t"
     i = 0

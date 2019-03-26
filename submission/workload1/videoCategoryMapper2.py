@@ -11,10 +11,9 @@ def read_map_output(file):
                 yield line.strip().split("\t", 1)
 
 def videoCategoryMapper2():
-    """ This mapper select categories and return the country trend (country count) information. 
-    Input format: video_id,trending_date,category_id,category,publish_time,views,likes,dislikes,
-                    comment_count,ratings_disabled,video_error_or_removed,country
-    Output format: category \t country=count \t country
+    """ This mapper behaves like an identity mapper only for grouping and sorting purposes. 
+    Input format: category \t value 
+    Output format: category \t value
     """
 
     data = read_map_output(sys.stdin)
