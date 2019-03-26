@@ -22,22 +22,29 @@ def videoCategoryReducer():
         data = read_map_output(sys.stdin)
     
         for category, video_id_counts in data: 
+                vididList = []
+                vidcountList = []
+                for record in video_id_counts.split(","):
+                    vididList.append(record.split("=")[0]) 
+                    vidcountList.append(int(record.split("=")[1])) 
+                current_counts = dict(list(zip(vididList, vidcountList)))  
+
                 # split the country counts by , delimiter and then by = to get a list of counts only
                 if category_video_counts.get(category) != None:
-
-                        count_list = [int(video_id.split("=")[1]) for video_id in video_id_counts.split(",")] 
-                        category_video_counts[category] = [sum(x) for x in zip(count_list, category_video_counts.get(category))] 
+                        # category entry in dictionary exists 
+                        # check the video id to match before summing
+                        existingCountsDict = category_video_counts.get(category) 
+                        for key, value in current_counts.items():
+                                existingCountsDict[key] = existingCountsDict.get(key, 0) + value 
                 else:
-                        # value exists set the dictionary for the first time 
-                        category_video_counts[category] = [int(video_id.split("=")[1]) for video_id in video_id_counts.split(",")]
-                        video_id_list[category] = [str(video_id.split("=")[0]) for video_id in video_id_counts.split(",")] 
+                        # value does not exist set the dictionary for the first time 
+                        category_video_counts[category] = current_counts
 
         # print out all the values from the dictionary for the final reducer 
         for category, counts in category_video_counts.items():
                 output = category + "\t"
                 i = 0
-                videoid = list(video_id_list.get(category))
-                for count in counts: 
+                for vidid, count in counts.items(): 
                         if i < len(counts)-1:
                                 output += "{},".format(count)
                         else: 
