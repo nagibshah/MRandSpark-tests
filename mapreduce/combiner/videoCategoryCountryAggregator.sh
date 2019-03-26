@@ -7,7 +7,6 @@ if [ $# -ne 2 ]; then
 fi
 
 hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-3.1.1.jar \
--D mapreduce.input.fileinputformat.split.maxsize=100000 \
 -D mapreduce.job.reduces=3 \
 -D mapreduce.job.name='Video Category Country Average list' \
 -partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner \
@@ -16,9 +15,21 @@ hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-3.1.1.jar \
 -file videoCategoryCombiner.py \
 -combiner videoCategoryCombiner.py \
 -file videoCategoryReducer.py \
--mapper videoCategoryReducer.py \
--combiner videoCategoryReducer.py \
+-reducer videoCategoryReducer.py \
+-input $1 \
+-output tmpOutput
+
+hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-3.1.1.jar \
+-D mapreduce.job.reduces=3 \
+-D mapreduce.job.name='Video Category Country Average list - chain 2' \
+-partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner \
+-file videoCategoryMapper2.py \
+-mapper videoCategoryMapper2.py \
 -file videoCategoryReducer2.py \
 -reducer videoCategoryReducer2.py \
--input $1 \
+-input tmpOutput/part-00000 \
+-input tmpOutput/part-00001 \
+-input tmpOutput/part-00002 \
 -output $2
+
+hadoop fs -rm -r tmpOutput

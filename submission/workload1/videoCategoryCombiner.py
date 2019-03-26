@@ -1,14 +1,13 @@
 #!/usr/bin/python3
 import sys
 
-
 def read_map_output(file):
     """ Return an iterator for key, value pair extracted from file (sys.stdin)
         Input format:  key \t value
         Output format: (key, value)
     """
     for line in file:
-        yield line.strip().split("\t", 1)
+        yield line.strip().split("\t", 2)
 
 
 def videoCategoryCombiner():
@@ -24,9 +23,9 @@ def videoCategoryCombiner():
 
     data = read_map_output(sys.stdin)
 
-    for category, videodata in data:
-        video_id_counts = videodata.split("|")[0]
-        country = videodata.split("|")[1]
+    for category, video_id_counts, country in data:
+        #video_id_counts = videodata.split("|")[0]
+        #country = videodata.split("|")[1]
 
         # print new category
         if current_category != category:

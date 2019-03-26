@@ -1,7 +1,6 @@
 #!/usr/local/bin/python3 
 import sys
 
-
 def read_map_output(file):
         """ Return an iterator for key, value pair extracted from file (sys.stdin)
                 Input format:  key \t value
