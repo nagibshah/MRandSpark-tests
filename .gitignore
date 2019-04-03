@@ -2,5 +2,4 @@
 data/*
 .vscode/*
 spark/.ipynb_checkpoints/*
-
-
+spark/__pycache__/*
