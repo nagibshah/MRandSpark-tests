@@ -3,3 +3,5 @@ data/*
 .vscode/*
 spark/.ipynb_checkpoints/*
 spark/__pycache__/*
+submission/workload2/.ipynb_checkpoints/*
+submission/workload2/__pycache__/*
